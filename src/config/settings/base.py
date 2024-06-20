@@ -13,6 +13,41 @@ DJANGO_ENVIRONMENT = os.getenv('DJANGO_ENVIRONMENT')
 
 ALLOWED_HOSTS = []
 
+import logging
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            # 'format': '{asctime} - {levelname} - {module} - {filename} - {name} - {args} - {message} - {msg}',
+            'format': '{asctime} - {levelname} - {name} - {funcName} - {args} - {msg}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'django.log',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+    },
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
