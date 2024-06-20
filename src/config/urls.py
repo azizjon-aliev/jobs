@@ -7,7 +7,7 @@ from src.utils.enums import Environment
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/vacancies/', include('src.apps.vacancy.urls')),
+    path('api/<str:version>/vacancies/', include('src.apps.vacancy.urls')),
 ]
 
 if settings.DEBUG:
